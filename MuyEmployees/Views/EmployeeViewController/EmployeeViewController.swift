@@ -41,6 +41,12 @@ class EmployeeViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        
+        viewModel.employedEdited = {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     private func setUpTable(){
@@ -66,9 +72,28 @@ extension EmployeeViewController : UITableViewDelegate{
                 alert.addTextField { (textField) in
                     textField.placeholder = "Cargo"
                 }
+                
+                alert.addTextField { (textField) in
+                    textField.placeholder = "Salario"
+                }
                 let saveAction = UIAlertAction(title: "Guardar", style: .default) { (action) in
-                    let textInFieldName = alert.textFields?[0].text ?? ""
-                    let textInFieldPosition = alert.textFields?[1].text ?? ""
+                    var textInFieldName = alert.textFields?[0].text ?? ""
+                    var textInFieldPosition = alert.textFields?[1].text ?? ""
+                    var textInFieldWage = Int(alert.textFields?[2].text ?? "0")
+                    
+                    if textInFieldName == ""{
+                        textInFieldName = self.employee?.name ?? ""
+                    }
+                    if textInFieldPosition == ""{
+                        textInFieldPosition = self.employee?.position ?? ""
+                    }
+                    
+                    if textInFieldWage == 0{
+                        textInFieldWage = Int("\(self.employee?.wage ?? 0)")
+                    }
+                    
+                    guard let employee = self.employee else{return}
+                    self.viewModel.editEmployee(employee: employee, name: textInFieldName, position: textInFieldPosition, wage: Int(textInFieldWage ?? 0))
                 }
                 let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
                 
