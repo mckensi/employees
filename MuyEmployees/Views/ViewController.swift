@@ -15,7 +15,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var viewModel = HomeViewModel()
     var emplooyes : [Employee]?
+    var emplooyesToShow:  [Employee]? {
+        didSet{
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     let searchBarController = UISearchController(searchResultsController: nil)
+    private var searchText : String?
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
@@ -29,7 +37,10 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getEmployeesList()
+        if searchBarController.searchBar.text == ""{
+            viewModel.getEmployeesList()
+        }
+        
     }
     
     private func setUpTable(){
@@ -45,6 +56,7 @@ class ViewController: UIViewController {
         viewModel.employeesListRes = { [weak self] response in
             guard let strongSelf = self else {return}
             strongSelf.emplooyes = response
+            strongSelf.emplooyesToShow = strongSelf.emplooyes
             DispatchQueue.main.async {
                 strongSelf.tableView.reloadData()
                 SVProgressHUD.dismiss()
@@ -80,7 +92,7 @@ extension ViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = EmployeeViewController()
         
-        if let employee = emplooyes?[indexPath.row]{
+        if let employee = emplooyesToShow?[indexPath.row]{
             vc.employee = employee
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
@@ -92,13 +104,13 @@ extension ViewController : UITableViewDelegate{
 
 extension ViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return emplooyes?.count ?? 0
+        return emplooyesToShow?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "employeeCell") as? EmplooyeTableViewCell
-        cell?.labelName.text = emplooyes?[indexPath.row].name
-        cell?.labelPosition.text = emplooyes?[indexPath.row].position
+        cell?.labelName.text = emplooyesToShow?[indexPath.row].name
+        cell?.labelPosition.text = emplooyesToShow?[indexPath.row].position
         return cell ?? UITableViewCell()
     }
     
@@ -109,6 +121,7 @@ extension ViewController : UITableViewDataSource{
 extension ViewController : UISearchBarDelegate{
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+        viewModel.getEmployeesList()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -117,19 +130,19 @@ extension ViewController : UISearchBarDelegate{
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
-        searchBar.endEditing(true)
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let searchText = searchBar.text
-        SVProgressHUD.show()
-        
-        searchBarController.isActive = false
-        
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == ""{
             viewModel.getEmployeesList()
         }else{
-            viewModel.getFilteredEmployees(text: searchText ?? "")
+            let filteredEmployees = emplooyes?.filter{ ($0.name?.contains(searchText ?? ""))!}
+                  emplooyesToShow = filteredEmployees
         }
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBarController.isActive = false
     }
 }
