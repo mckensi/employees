@@ -24,4 +24,8 @@ class EmployeesManager: NSObject {
     func editEmployee(employee: Employee, name: String, position: String, wage: Int, responseValue: @escaping () -> Void, onFailure: (() -> Void)? = nil){
         employeesService.editEmployee(employee: employee, name: name, position: position, wage: wage, responseValue: responseValue, onFailure: onFailure)
     }
+    
+    func addEmployee(name: String, position: String, wage: Int, responseValue: @escaping () -> Void, onFailure: (() -> Void)? = nil){
+        employeesService.addEmployee(name: name, position: position, wage: wage, responseValue: responseValue, onFailure: onFailure)
+    }
 }

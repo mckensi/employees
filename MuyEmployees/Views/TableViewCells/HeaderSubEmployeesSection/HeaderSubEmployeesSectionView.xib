@@ -13,22 +13,41 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personas a cargo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT2-zQ-Mwy">
-                    <rect key="frame" x="16" y="40" width="382" height="29"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ZHx-lL-ieb">
+                    <rect key="frame" x="16" y="16" width="382" height="77"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personas a cargo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT2-zQ-Mwy">
+                            <rect key="frame" x="0.0" y="0.0" width="349.5" height="77"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yt4-yO-kB8">
+                            <rect key="frame" x="349.5" y="0.0" width="32.5" height="77"/>
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <state key="normal" image="plus" catalog="system">
+                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                            <connections>
+                                <action selector="actionAddSubEmployee:" destination="iN0-l3-epB" eventType="touchUpInside" id="asU-lr-SFC"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="BT2-zQ-Mwy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MgY-uV-Ri2"/>
-                <constraint firstItem="BT2-zQ-Mwy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Ztv-nQ-fze"/>
-                <constraint firstItem="BT2-zQ-Mwy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="rOk-gp-bdp"/>
+                <constraint firstItem="ZHx-lL-ieb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="8I4-Pr-Skj"/>
+                <constraint firstItem="ZHx-lL-ieb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Gfx-jV-AnO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ZHx-lL-ieb" secondAttribute="bottom" constant="16" id="cI3-AE-lLG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZHx-lL-ieb" secondAttribute="trailing" constant="16" id="dcq-Vz-bQU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="50.724637681159422" y="372.65625"/>
         </view>
     </objects>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+    </resources>
 </document>

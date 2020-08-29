@@ -8,9 +8,23 @@
 
 import Foundation
 import UIKit
+
+protocol HeaderSubEmployeesSectionDelegate {
+    func addNewSubEmployee()
+}
 class HeaderSubEmployeesSectionView : UIView{
+    private var delegate : HeaderSubEmployeesSectionDelegate?
     override class func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func setDelegate(delegate: HeaderSubEmployeesSectionDelegate){
+        self.delegate = delegate
+    }
+    
+    @IBAction func actionAddSubEmployee(_ sender: Any) {
+        guard let delegate = self.delegate else {return}
+        delegate.addNewSubEmployee()
     }
     
 }

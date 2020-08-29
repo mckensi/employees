@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class EmployeeViewController: UIViewController {
 
@@ -23,6 +24,7 @@ class EmployeeViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.title = employee?.name ?? ""
         setUpTable()
+        headerSubEmployeesSectionView?.setDelegate(delegate: self)
         initListener()
     }
     
@@ -46,6 +48,12 @@ class EmployeeViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+        
+        viewModel.onFailure = {
+            let banner = NotificationBanner(title: "Error", subtitle: "Ocurrio un problema con tu busqueda, trabajamos para resolverlo.", style: .danger)
+            banner.backgroundColor = .systemYellow
+            banner.show()
         }
     }
     
@@ -179,5 +187,10 @@ extension EmployeeViewController : UITableViewDataSource{
         
     }
     
-    
+}
+
+extension EmployeeViewController : HeaderSubEmployeesSectionDelegate{
+    func addNewSubEmployee() {
+       
+    }
 }

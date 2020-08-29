@@ -147,4 +147,22 @@ class EmployeesService {
          }
      }
     
+    
+    func addEmployee(name: String, position: String, wage: Int, responseValue: @escaping () -> Void,  onFailure: (() -> Void)? = nil){
+         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let newEmployee = Employee(context: context)
+        newEmployee.name = name
+        newEmployee.position = position
+        newEmployee.wage = Int64("\(wage)") ?? 0
+        
+         do {
+             try context.save()
+             responseValue()
+         }
+         catch{
+             print("error al borrar esta relación laboral")
+             onFailure?()
+         }
+     }
+    
 }

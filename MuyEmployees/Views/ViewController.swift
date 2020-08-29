@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import NotificationBannerSwift
+import SVProgressHUD
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     var viewModel = HomeViewModel()
     var emplooyes : [Employee]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
         initListener()
-        viewModel.getEmployeesList()
+        SVProgressHUD.show()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getEmployeesList()
     }
     
     private func setUpTable(){
@@ -38,15 +45,24 @@ class ViewController: UIViewController {
             strongSelf.emplooyes = response
             DispatchQueue.main.async {
                 strongSelf.tableView.reloadData()
+                SVProgressHUD.dismiss()
             }
+            
         }
         
         viewModel.onFailure = {
-            
+            let banner = NotificationBanner(title: "Error", subtitle: "Ocurrio un problema con tu busqueda, trabajamos para resolverlo.", style: .danger)
+            banner.backgroundColor = .systemYellow
+            banner.show()
+            SVProgressHUD.dismiss()
         }
     }
-
-
+    
+    @IBAction func actionAddEmployee(_ sender: Any) {
+        let vc = AddEmployeeViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension ViewController : UITableViewDelegate{
