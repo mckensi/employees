@@ -165,4 +165,20 @@ class EmployeesService {
          }
      }
     
+    func getFilterEmployees(text: String, responseValue: @escaping ([Employee]) -> Void,  onFailure: (() -> Void)? = nil){
+        do{
+            let request = Employee.fetchRequest() as NSFetchRequest<Employee>
+                   let pred = NSPredicate(format: "name CONTAINS %@", text)
+                   request.predicate = pred
+                   
+                   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                   let filteredEmployees = try context.fetch(request)
+            responseValue(filteredEmployees)
+        }
+        catch{
+            onFailure?()
+        }
+        
+    }
+    
 }

@@ -28,4 +28,8 @@ class EmployeesManager: NSObject {
     func addEmployee(name: String, position: String, wage: Int, responseValue: @escaping () -> Void, onFailure: (() -> Void)? = nil){
         employeesService.addEmployee(name: name, position: position, wage: wage, responseValue: responseValue, onFailure: onFailure)
     }
+    
+    func getFilteredEmployees(text: String, responseValue: @escaping ([Employee]) -> Void, onFailure: (() -> Void)? = nil){
+        employeesService.getFilterEmployees(text: text, responseValue: responseValue, onFailure: onFailure)
+    }
 }

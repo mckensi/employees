@@ -15,13 +15,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var viewModel = HomeViewModel()
     var emplooyes : [Employee]?
-    
+    let searchBarController = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
         initListener()
         SVProgressHUD.show()
-        
+        self.navigationItem.searchController = searchBarController
+               self.searchBarController.searchBar.delegate = self
+               self.searchBarController.searchBar.placeholder = "Buscar"
         // Do any additional setup after loading the view.
     }
     
@@ -48,6 +50,15 @@ class ViewController: UIViewController {
                 SVProgressHUD.dismiss()
             }
             
+        }
+        
+        viewModel.employeesFilteredListRes = { [weak self] response in
+            guard let strongSelf = self else {return}
+            strongSelf.emplooyes = response
+            DispatchQueue.main.async {
+                strongSelf.tableView.reloadData()
+                SVProgressHUD.dismiss()
+            }
         }
         
         viewModel.onFailure = {
@@ -92,4 +103,33 @@ extension ViewController : UITableViewDataSource{
     }
     
     
+}
+
+
+extension ViewController : UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let searchText = searchBar.text
+        SVProgressHUD.show()
+        
+        searchBarController.isActive = false
+        
+        if searchText == ""{
+            viewModel.getEmployeesList()
+        }else{
+            viewModel.getFilteredEmployees(text: searchText ?? "")
+        }
+    }
 }
