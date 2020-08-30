@@ -10,7 +10,7 @@ import UIKit
 import NotificationBannerSwift
 
 class EmployeeViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var employee : Employee?
@@ -116,11 +116,11 @@ extension EmployeeViewController : UITableViewDelegate{
                 if let subEmployeeToDelete = subEmployes?[indexPath.row]{
                     self.viewModel.removeSubEmployee(subEmployed: subEmployeeToDelete)
                 }
-            
+                
             }
             
             return UISwipeActionsConfiguration(actions: [action])
-
+            
         default:
             return nil
         }
@@ -191,6 +191,8 @@ extension EmployeeViewController : UITableViewDataSource{
 
 extension EmployeeViewController : HeaderSubEmployeesSectionDelegate{
     func addNewSubEmployee() {
-       
+        let vc = AddSubEmployeeViewController()
+        vc.employee = self.employee
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

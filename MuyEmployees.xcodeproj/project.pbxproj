@@ -39,6 +39,11 @@
 		04F4D28224FAE7B500F42B80 /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F4D28024FAE7B500F42B80 /* AddEmployeeViewController.swift */; };
 		04F4D28324FAE7B500F42B80 /* AddEmployeeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F4D28124FAE7B500F42B80 /* AddEmployeeViewController.xib */; };
 		04F4D28524FAEC2700F42B80 /* AddEmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F4D28424FAEC2700F42B80 /* AddEmployeeViewModel.swift */; };
+		04F4D28924FB267000F42B80 /* AddSubEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F4D28724FB267000F42B80 /* AddSubEmployeeViewController.swift */; };
+		04F4D28A24FB267000F42B80 /* AddSubEmployeeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F4D28824FB267000F42B80 /* AddSubEmployeeViewController.xib */; };
+		04F4D28E24FB2B9700F42B80 /* SubEmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F4D28C24FB2B9700F42B80 /* SubEmployeeTableViewCell.swift */; };
+		04F4D28F24FB2B9700F42B80 /* SubEmployeeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F4D28D24FB2B9700F42B80 /* SubEmployeeTableViewCell.xib */; };
+		04F4D29124FB2F9A00F42B80 /* AddSubEmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F4D29024FB2F9A00F42B80 /* AddSubEmployeeViewModel.swift */; };
 		054B1DBBABE22397DDC7C2D0 /* Pods_MuyEmployeesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1B46FBACF24D1BE4E3D7C8 /* Pods_MuyEmployeesTests.framework */; };
 		4FCCA02C64D7AADE4516B91F /* Pods_MuyEmployees_MuyEmployeesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD8196765C9318C6F8A6CB2 /* Pods_MuyEmployees_MuyEmployeesUITests.framework */; };
 		D04D49CEAFC79C794B4313EE /* Pods_MuyEmployees.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10417E151430549E16C8BC23 /* Pods_MuyEmployees.framework */; };
@@ -100,6 +105,11 @@
 		04F4D28024FAE7B500F42B80 /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
 		04F4D28124FAE7B500F42B80 /* AddEmployeeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddEmployeeViewController.xib; sourceTree = "<group>"; };
 		04F4D28424FAEC2700F42B80 /* AddEmployeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewModel.swift; sourceTree = "<group>"; };
+		04F4D28724FB267000F42B80 /* AddSubEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubEmployeeViewController.swift; sourceTree = "<group>"; };
+		04F4D28824FB267000F42B80 /* AddSubEmployeeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddSubEmployeeViewController.xib; sourceTree = "<group>"; };
+		04F4D28C24FB2B9700F42B80 /* SubEmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubEmployeeTableViewCell.swift; sourceTree = "<group>"; };
+		04F4D28D24FB2B9700F42B80 /* SubEmployeeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubEmployeeTableViewCell.xib; sourceTree = "<group>"; };
+		04F4D29024FB2F9A00F42B80 /* AddSubEmployeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubEmployeeViewModel.swift; sourceTree = "<group>"; };
 		10417E151430549E16C8BC23 /* Pods_MuyEmployees.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuyEmployees.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AD8196765C9318C6F8A6CB2 /* Pods_MuyEmployees_MuyEmployeesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuyEmployees_MuyEmployeesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF81C12D6259B1EEB26F947 /* Pods-MuyEmployees-MuyEmployeesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuyEmployees-MuyEmployeesUITests.debug.xcconfig"; path = "Target Support Files/Pods-MuyEmployees-MuyEmployeesUITests/Pods-MuyEmployees-MuyEmployeesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +242,7 @@
 		04E2DEB524F961FE00C92916 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04F4D28624FB265400F42B80 /* AddSubEmployeeViewController */,
 				04F4D27F24FAE71D00F42B80 /* AddEmployeeViewController */,
 				04E2DECD24F9A68900C92916 /* EmployeeViewController */,
 				04E2DEC524F9745000C92916 /* TableViewCells */,
@@ -246,6 +257,7 @@
 				04E2DEC024F971A800C92916 /* HomeViewModel.swift */,
 				04E2DEED24F9DBCB00C92916 /* EmployeeViewModel.swift */,
 				04F4D28424FAEC2700F42B80 /* AddEmployeeViewModel.swift */,
+				04F4D29024FB2F9A00F42B80 /* AddSubEmployeeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -269,6 +281,7 @@
 		04E2DEC524F9745000C92916 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				04F4D28B24FB2B6600F42B80 /* SubEmployeeSelectedCell */,
 				04E2DED824F9AF9000C92916 /* HeaderSubEmployeesSection */,
 				04E2DED324F9A8C800C92916 /* HeaderEmployeeDetail */,
 				04E2DED224F9A8BC00C92916 /* EmployeeTableViewCell */,
@@ -327,6 +340,24 @@
 				04F4D28124FAE7B500F42B80 /* AddEmployeeViewController.xib */,
 			);
 			path = AddEmployeeViewController;
+			sourceTree = "<group>";
+		};
+		04F4D28624FB265400F42B80 /* AddSubEmployeeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04F4D28724FB267000F42B80 /* AddSubEmployeeViewController.swift */,
+				04F4D28824FB267000F42B80 /* AddSubEmployeeViewController.xib */,
+			);
+			path = AddSubEmployeeViewController;
+			sourceTree = "<group>";
+		};
+		04F4D28B24FB2B6600F42B80 /* SubEmployeeSelectedCell */ = {
+			isa = PBXGroup;
+			children = (
+				04F4D28C24FB2B9700F42B80 /* SubEmployeeTableViewCell.swift */,
+				04F4D28D24FB2B9700F42B80 /* SubEmployeeTableViewCell.xib */,
+			);
+			path = SubEmployeeSelectedCell;
 			sourceTree = "<group>";
 		};
 		9924D344855883A93F2030A7 /* Pods */ = {
@@ -465,8 +496,10 @@
 				04E2DE7324F9583B00C92916 /* Assets.xcassets in Resources */,
 				04E2DED124F9A6A600C92916 /* EmployeeViewController.xib in Resources */,
 				04E2DE6E24F9583900C92916 /* Main.storyboard in Resources */,
+				04F4D28F24FB2B9700F42B80 /* SubEmployeeTableViewCell.xib in Resources */,
 				04E2DED724F9AD4F00C92916 /* HeaderEmployeeTableViewCell.xib in Resources */,
 				04E2DEDA24F9AFAF00C92916 /* HeaderSubEmployeesSectionView.xib in Resources */,
+				04F4D28A24FB267000F42B80 /* AddSubEmployeeViewController.xib in Resources */,
 				04F4D28324FAE7B500F42B80 /* AddEmployeeViewController.xib in Resources */,
 				04E2DEC924F9749900C92916 /* EmplooyeTableViewCell.xib in Resources */,
 			);
@@ -610,12 +643,15 @@
 				04E2DEC124F971A800C92916 /* HomeViewModel.swift in Sources */,
 				04E2DE6924F9583900C92916 /* SceneDelegate.swift in Sources */,
 				04E2DEE824F9C0CF00C92916 /* Employee+CoreDataClass.swift in Sources */,
+				04F4D28E24FB2B9700F42B80 /* SubEmployeeTableViewCell.swift in Sources */,
 				04F4D28524FAEC2700F42B80 /* AddEmployeeViewModel.swift in Sources */,
 				04E2DECC24F975A800C92916 /* Extensions.swift in Sources */,
 				04F4D28224FAE7B500F42B80 /* AddEmployeeViewController.swift in Sources */,
 				04E2DEBF24F96EFA00C92916 /* EmployeesListRes.swift in Sources */,
 				04E2DE7124F9583900C92916 /* MuyEmployees.xcdatamodeld in Sources */,
 				04E2DEC424F9721A00C92916 /* EmployeesManager.swift in Sources */,
+				04F4D28924FB267000F42B80 /* AddSubEmployeeViewController.swift in Sources */,
+				04F4D29124FB2F9A00F42B80 /* AddSubEmployeeViewModel.swift in Sources */,
 				04E2DEEE24F9DBCB00C92916 /* EmployeeViewModel.swift in Sources */,
 				04E2DEE924F9C0CF00C92916 /* SubEmployees+CoreDataProperties.swift in Sources */,
 			);

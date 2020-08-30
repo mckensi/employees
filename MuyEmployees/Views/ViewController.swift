@@ -13,25 +13,27 @@ import SVProgressHUD
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var viewModel = HomeViewModel()
-    var emplooyes : [Employee]?
-    var emplooyesToShow:  [Employee]? {
+    private var viewModel = HomeViewModel()
+    private var emplooyes : [Employee]?
+    private var emplooyesToShow:  [Employee]? {
         didSet{
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-    let searchBarController = UISearchController(searchResultsController: nil)
+    
+    private let searchBarController = UISearchController(searchResultsController: nil)
     private var searchText : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
         initListener()
         SVProgressHUD.show()
         self.navigationItem.searchController = searchBarController
-               self.searchBarController.searchBar.delegate = self
-               self.searchBarController.searchBar.placeholder = "Buscar"
+        self.searchBarController.searchBar.delegate = self
+        self.searchBarController.searchBar.placeholder = "Buscar"
         // Do any additional setup after loading the view.
     }
     
@@ -49,8 +51,6 @@ class ViewController: UIViewController {
         let nibCell = UINib(nibName: "EmplooyeTableViewCell", bundle: nil)
         tableView.register(nibCell.self, forCellReuseIdentifier: "employeeCell")
     }
-    
-    
     
     private func initListener(){
         viewModel.employeesListRes = { [weak self] response in
@@ -136,8 +136,8 @@ extension ViewController : UISearchBarDelegate{
         if searchText == ""{
             viewModel.getEmployeesList()
         }else{
-            let filteredEmployees = emplooyes?.filter{ ($0.name?.contains(searchText ?? ""))!}
-                  emplooyesToShow = filteredEmployees
+            let filteredEmployees = emplooyes?.filter{ ($0.name?.contains(searchText ))!}
+            emplooyesToShow = filteredEmployees
         }
         
     }
