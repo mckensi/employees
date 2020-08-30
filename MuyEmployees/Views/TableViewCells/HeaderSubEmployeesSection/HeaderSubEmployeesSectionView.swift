@@ -22,6 +22,8 @@ class HeaderSubEmployeesSectionView : UIView{
         self.delegate = delegate
     }
     
+    //MARK: IBActions
+    
     @IBAction func actionAddSubEmployee(_ sender: Any) {
         guard let delegate = self.delegate else {return}
         delegate.addNewSubEmployee()

@@ -51,6 +51,8 @@ class ViewController: UIViewController {
         tableView.register(nibCell.self, forCellReuseIdentifier: "employeeCell")
     }
     
+    //MARK: Init Listeners
+    
     private func initListener(){
         viewModel.employeesListRes = { [weak self] response in
             guard let strongSelf = self else {return}
@@ -86,6 +88,8 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: IBActions
+    
     @IBAction func actionAddEmployee(_ sender: Any) {
         let vc = AddEmployeeViewController()
         self.navigationController?.pushViewController(vc, animated: true)
@@ -115,6 +119,8 @@ extension ViewController : UITableViewDelegate{
         return UISwipeActionsConfiguration(actions: [action])
     }
 }
+
+//MARK: Extensions
 
 extension ViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

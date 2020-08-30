@@ -34,6 +34,8 @@ class AddEmployeeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Init Listeners
+    
     func initListener(){
         viewModel.employedAdded = {
             let banner = NotificationBanner(title: "Genial!", subtitle: "Has agregado un nuevo colaborador", style: .success)
@@ -91,6 +93,8 @@ class AddEmployeeViewController: UIViewController {
             banner.show()
         }
     }
+    
+    //MARK: IBActions
     
     @IBAction func actionAddEmployee(_ sender: Any) {
         save()

@@ -44,6 +44,8 @@ class EmployeeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Init Listeners
+    
     private func initListener(){
         viewModel.employedDeleted = {
             DispatchQueue.main.async {
@@ -74,6 +76,8 @@ class EmployeeViewController: UIViewController {
         tableView.register(nibCellSubEmployee.self, forCellReuseIdentifier: "subEmployeeCell")
     }
 }
+
+//MARK: Extensions
 
 extension EmployeeViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -133,6 +137,7 @@ extension EmployeeViewController : UITableViewDelegate{
         }
     }
 }
+
 
 extension EmployeeViewController : UITableViewDataSource{
     

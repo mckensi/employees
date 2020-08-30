@@ -36,6 +36,8 @@ class AddSubEmployeeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Init Listeners
+    
     private func initListener(){
         viewModel.employeesListRes = { [weak self] response in
             guard let strongSelf = self else{return}
@@ -70,6 +72,8 @@ class AddSubEmployeeViewController: UIViewController {
         tableView.register(nibCell.self, forCellReuseIdentifier: "subEmployeeCell")
     }
 }
+
+//MARK: Extensions
 
 extension AddSubEmployeeViewController : UITableViewDelegate{
     

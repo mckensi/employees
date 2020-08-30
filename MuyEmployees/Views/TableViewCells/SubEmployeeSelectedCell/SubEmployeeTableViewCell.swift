@@ -32,6 +32,8 @@ class SubEmployeeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    //MARK: IBActions
+    
     @IBAction func actionAdd(_ sender: Any) {
         if let delegate = self.delegate {
             delegate.addSubEmployee(index: indexRow ?? 0)
