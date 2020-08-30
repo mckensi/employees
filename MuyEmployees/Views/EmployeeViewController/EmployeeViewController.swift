@@ -28,6 +28,13 @@ class EmployeeViewController: UIViewController {
         initListener()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     init(){
         super.init(nibName: "EmployeeViewController", bundle: nil)
         

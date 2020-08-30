@@ -160,10 +160,28 @@ class EmployeesService {
              responseValue()
          }
          catch{
-             print("error al borrar esta relación laboral")
+             print("Error al añadir Colaborador")
              onFailure?()
          }
      }
+    
+    func addSubEmployee(employee: Employee,name: String, id: Int, responseValue: @escaping () -> Void,  onFailure: (() -> Void)? = nil){
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let subEmployee = SubEmployees(context: context)
+        subEmployee.name = name
+        subEmployee.id = Int64(id)
+        subEmployee.boss = employee
+        employee.addToSubEmployees(subEmployee)
+       
+        do {
+            try context.save()
+            responseValue()
+        }
+        catch{
+            print("Error al guardar colaborador al cargo")
+            onFailure?()
+        }
+    }
     
     func getFilterEmployees(text: String, responseValue: @escaping ([Employee]) -> Void,  onFailure: (() -> Void)? = nil){
         do{

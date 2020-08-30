@@ -13,6 +13,7 @@ class AddSubEmployeeViewModel{
     
     var employeesListRes: (([Employee]) -> Void)?
     var employeesFilteredListRes: (([Employee]) -> Void)?
+    var addSubEmployeeToEmployeeRes: (() -> Void)?
    
     var onFailure: (() -> Void)?
 
@@ -25,6 +26,12 @@ class AddSubEmployeeViewModel{
     func getFilteredEmployees(text: String){
         if let responseValue = employeesFilteredListRes {
             employeeManager.getFilteredEmployees(text: text, responseValue: responseValue, onFailure: onFailure)
+        }
+    }
+    
+    func addSubEmployeeToEmployee(employee: Employee, name: String, id: Int){
+        if let responseValue = addSubEmployeeToEmployeeRes{
+            employeeManager.addSubEmployeeToEmployee(employee: employee, name: name, id: id, responseValue: responseValue, onFailure: onFailure)
         }
     }
 }

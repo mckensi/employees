@@ -32,4 +32,8 @@ class EmployeesManager: NSObject {
     func getFilteredEmployees(text: String, responseValue: @escaping ([Employee]) -> Void, onFailure: (() -> Void)? = nil){
         employeesService.getFilterEmployees(text: text, responseValue: responseValue, onFailure: onFailure)
     }
+    
+    func addSubEmployeeToEmployee(employee: Employee, name: String, id: Int, responseValue: @escaping () -> Void, onFailure: (() -> Void)? = nil){
+        employeesService.addSubEmployee(employee: employee, name: name, id: id, responseValue: responseValue, onFailure: onFailure)
+    }
 }

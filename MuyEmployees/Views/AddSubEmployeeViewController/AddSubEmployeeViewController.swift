@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import NotificationBannerSwift
+import SVProgressHUD
 
 class AddSubEmployeeViewController: UIViewController {
     
@@ -45,6 +47,20 @@ class AddSubEmployeeViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        
+        viewModel.addSubEmployeeToEmployeeRes = {
+            let banner = NotificationBanner(title: "Genial!", subtitle: "Has agregado un nuevo colaborador", style: .success)
+                     banner.backgroundColor = .systemGreen
+                     banner.show()
+            SVProgressHUD.dismiss()
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        viewModel.onFailure = {
+            let banner = NotificationBanner(title: "Error", subtitle: "Ocurrio un problema con tu busqueda, trabajamos para resolverlo.", style: .danger)
+            banner.backgroundColor = .systemYellow
+            banner.show()
+        }
     }
     private func setUpTable(){
         tableView.delegate = self
@@ -67,8 +83,16 @@ extension AddSubEmployeeViewController : UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "subEmployeeCell") as? SubEmployeeTableViewCell
         cell?.labelName.text = employees?[indexPath.row].name
+        cell?.setDelegate(delegate: self)
+        cell?.indexRow = indexPath.row
         return cell ?? UITableViewCell()
     }
-    
-    
+}
+
+extension AddSubEmployeeViewController : SubEmployeeTableViewCellDelegate{
+    func addSubEmployee(index: Int) {
+        guard let employeeToAdded = employees?[index] else{return}
+        SVProgressHUD.show()
+        viewModel.addSubEmployeeToEmployee(employee: self.employee!, name: employeeToAdded.name ?? "", id: Int("\(employeeToAdded.id)") ?? 0)
+    }
 }
