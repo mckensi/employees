@@ -37,14 +37,15 @@ class AddSubEmployeeViewController: UIViewController {
     }
     
     private func initListener(){
-        viewModel.employeesListRes = { response in
-            self.employees = response
-            guard let subEmployes = self.employee?.subEmployees?.allObjects as? [SubEmployees] else {return}
+        viewModel.employeesListRes = { [weak self] response in
+            guard let strongSelf = self else{return}
+            strongSelf.employees = response
+            guard let subEmployes = strongSelf.employee?.subEmployees?.allObjects as? [SubEmployees] else {return}
             for subEmployee in subEmployes{
-                self.employees?.removeAll(where: {$0.id == subEmployee.id})
+                strongSelf.employees?.removeAll(where: {$0.id == subEmployee.id})
             }
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                strongSelf.tableView.reloadData()
             }
         }
         

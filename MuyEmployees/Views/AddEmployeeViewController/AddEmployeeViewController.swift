@@ -12,7 +12,7 @@ import SVProgressHUD
 import IQKeyboardManagerSwift
 
 class AddEmployeeViewController: UIViewController {
-
+    
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldPosition: UITextField!
     @IBOutlet weak var textFieldWage: UITextField!
@@ -23,23 +23,22 @@ class AddEmployeeViewController: UIViewController {
         super.viewDidLoad()
         initListener()
         setupKeyboard()
-        // Do any additional setup after loading the view.
     }
-
+    
     init(){
-          super.init(nibName: "AddEmployeeViewController", bundle: nil)
-          
-      }
-      
-      required init?(coder: NSCoder) {
-          fatalError("init(coder:) has not been implemented")
-      }
+        super.init(nibName: "AddEmployeeViewController", bundle: nil)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func initListener(){
         viewModel.employedAdded = {
             let banner = NotificationBanner(title: "Genial!", subtitle: "Has agregado un nuevo colaborador", style: .success)
-                     banner.backgroundColor = .systemGreen
-                     banner.show()
+            banner.backgroundColor = .systemGreen
+            banner.show()
             SVProgressHUD.dismiss()
             self.navigationController?.popViewController(animated: true)
         }
@@ -47,8 +46,8 @@ class AddEmployeeViewController: UIViewController {
         viewModel.onFailure = {
             SVProgressHUD.dismiss()
             let banner = NotificationBanner(title: "Error", subtitle: "Ha sucedido un error guardando, trabajamos para solucionarlo.", style: .danger)
-                     banner.backgroundColor = .systemRed
-                     banner.show()
+            banner.backgroundColor = .systemRed
+            banner.show()
             SVProgressHUD.dismiss()
         }
     }
@@ -59,7 +58,7 @@ class AddEmployeeViewController: UIViewController {
         IQKeyboardManager.shared.enabledToolbarClasses.append(AddEmployeeViewController.self)
         IQKeyboardManager.shared.enabledTouchResignedClasses.append(AddEmployeeViewController.self)
     }
-      
+    
     func save(){
         var allTheFieldsAreCompleted = true
         if let name = textFieldName.text {

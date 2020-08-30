@@ -13,7 +13,8 @@ class HomeViewModel{
     
     var employeesListRes: (([Employee]) -> Void)?
     var employeesFilteredListRes: (([Employee]) -> Void)?
-   
+    var deleteEmployeeRes: (() -> Void)?
+    
     var onFailure: (() -> Void)?
 
     func getEmployeesList(){
@@ -25,6 +26,12 @@ class HomeViewModel{
     func getFilteredEmployees(text: String){
         if let responseValue = employeesFilteredListRes {
             employeeManager.getFilteredEmployees(text: text, responseValue: responseValue, onFailure: onFailure)
+        }
+    }
+    
+    func deleteEmployee(employee: Employee){
+        if let responseValue = deleteEmployeeRes {
+            employeeManager.deleteEmployee(employee: employee, responseValue: responseValue, onFailure: onFailure)
         }
     }
 }

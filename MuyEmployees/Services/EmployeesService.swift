@@ -131,6 +131,20 @@ class EmployeesService {
         }
     }
     
+    func deleteEmployee(employee: Employee, responseValue: @escaping () -> Void,  onFailure: (() -> Void)? = nil){
+          let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+          context.delete(employee)
+          do {
+              try context.save()
+              responseValue()
+          }
+          catch{
+              print("error al borrar colaboradr")
+              onFailure?()
+          }
+      }
+    
+    
     func editEmployee(employee: Employee, name: String, position: String, wage: Int, responseValue: @escaping () -> Void,  onFailure: (() -> Void)? = nil){
          let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         employee.name = name

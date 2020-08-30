@@ -21,6 +21,10 @@ class EmployeesManager: NSObject {
         employeesService.deleteSubEmployee(subEmployee: subEmployed, responseValue: responseValue, onFailure: onFailure)
     }
     
+    func deleteEmployee(employee: Employee, responseValue: @escaping () -> Void, onFailure: (() -> Void)? = nil){
+        employeesService.deleteEmployee(employee: employee, responseValue: responseValue, onFailure: onFailure)
+    }
+    
     func editEmployee(employee: Employee, name: String, position: String, wage: Int, responseValue: @escaping () -> Void, onFailure: (() -> Void)? = nil){
         employeesService.editEmployee(employee: employee, name: name, position: position, wage: wage, responseValue: responseValue, onFailure: onFailure)
     }

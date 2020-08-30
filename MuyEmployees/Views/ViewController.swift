@@ -34,7 +34,6 @@ class ViewController: UIViewController {
         self.navigationItem.searchController = searchBarController
         self.searchBarController.searchBar.delegate = self
         self.searchBarController.searchBar.placeholder = "Buscar"
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +60,6 @@ class ViewController: UIViewController {
                 strongSelf.tableView.reloadData()
                 SVProgressHUD.dismiss()
             }
-            
         }
         
         viewModel.employeesFilteredListRes = { [weak self] response in
@@ -70,6 +68,13 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 strongSelf.tableView.reloadData()
                 SVProgressHUD.dismiss()
+            }
+        }
+        
+        viewModel.deleteEmployeeRes = {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.tableView.reloadData()
             }
         }
         
@@ -95,10 +100,19 @@ extension ViewController : UITableViewDelegate{
         if let employee = emplooyesToShow?[indexPath.row]{
             vc.employee = employee
             self.navigationController?.pushViewController(vc, animated: true)
-        }else{
-            
         }
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        let action = UIContextualAction(style: .destructive, title: "Eliminar") { (action, view, handler) in
+            
+            if let employee = self.emplooyes?[indexPath.row] {
+                SVProgressHUD.show()
+                self.viewModel.deleteEmployee(employee: employee)
+            }
+        }
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
 
