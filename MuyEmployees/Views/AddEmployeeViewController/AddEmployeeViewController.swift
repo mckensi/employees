@@ -9,6 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 import SVProgressHUD
+import IQKeyboardManagerSwift
 
 class AddEmployeeViewController: UIViewController {
 
@@ -21,6 +22,7 @@ class AddEmployeeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initListener()
+        setupKeyboard()
         // Do any additional setup after loading the view.
     }
 
@@ -49,6 +51,13 @@ class AddEmployeeViewController: UIViewController {
                      banner.show()
             SVProgressHUD.dismiss()
         }
+    }
+    
+    private func setupKeyboard() {
+        IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.enabledDistanceHandlingClasses.append(AddEmployeeViewController.self)
+        IQKeyboardManager.shared.enabledToolbarClasses.append(AddEmployeeViewController.self)
+        IQKeyboardManager.shared.enabledTouchResignedClasses.append(AddEmployeeViewController.self)
     }
       
     func save(){
